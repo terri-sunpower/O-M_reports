@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太陽能光伏系統定期巡檢報告</title>
+    <style>
+        /* 網頁基本樣式 */
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* 控制按鈕區 */
+        .no-print {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .btn-print {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-print:hover {
+            background-color: #0056b3;
+        }
+
+        /* Header 圖片背景區域 */
+        .header-bg {
+            width: 100%;
+            height: 180px;
+            background: url('https://googleusercontent.com/image_generation_content/317') no-repeat center top;
+            background-size: cover;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 20px;
+        }
+
+        /* 標題與表單 */
+        h1 {
+            text-align: center;
+            color: #1a2a3a;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="date"], textarea, select {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        /* --------------------------------------------------
+           列印專用 CSS（隱藏按鈕、優化輸入框顯示）
+        -------------------------------------------------- */
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .no-print {
+                display: none !important; /* 列印時隱藏 Print 按鈕 */
+            }
+
+            /* 將 Input 與 Textarea 邊框去除，顯示如一般文字 */
+            input[type="text"], input[type="date"], textarea, select {
+                border: none;
+                background: transparent;
+                padding: 0;
+                font-size: 14px;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+
+            .header-bg {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="no-print">
+        <button class="btn-print" onclick="window.print()">🖨️ 列印 / 儲存為 PDF</button>
+    </div>
+
+    <div class="header-bg"></div>
+
+    <h1>太陽能光伏系統定期巡檢報告</h1>
+
+    <form id="inspectionReport">
+        <div class="form-section">
+            <div class="form-section-title">一、 基本資料</div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>客戶名稱 / 項目名稱：</label>
+                    <input type="text" placeholder="請輸入名稱">
+                </div>
+                <div class="form-group">
+                    <label>巡檢日期：</label>
+                    <input type="date">
+                </div>
+                <div class="form-group">
+                    <label>案場地址：</label>
+                    <input type="text" placeholder="請輸入地址">
+                </div>
+                <div class="form-group">
+                    <label>巡檢人員：</label>
+                    <input type="text" placeholder="請輸入巡檢人員姓名">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-section-title">二、 巡檢與測試項目</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">檢查項目</th>
+                        <th style="width: 25%;">檢查結果</th>
+                        <th>備註 / 異常說明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. 光伏板表面（清潔/破損）</td>
+                        <td>
+                            <select>
+                                <option>正常</option>
+                                <option>需清潔</option>
+                                <option>異常/破損</option>
+                            </select>
+                        </td>
+                        <td><input type="text" placeholder="備註"></td>
+                    </tr>
+                    <tr>
+                        <td>2. 支架結構與螺絲鬆緊</td>
+                        <td>
+                            <select>
+                                <option>正常</option>
+                                <option>需緊固</option>
+                                <option>異常/鏽蝕</option>
+                            </select>
+                        </td>
+                        <td><input type="text" placeholder="備註"></td>
+                    </tr>
+                    <tr>
+                        <td>3. 逆變器（Inverter）運作狀態</td>
+                        <td>
+                            <select>
+                                <option>正常運作</option>
+                                <option>警告/告警</option>
+                                <option>停機異常</option>
+                            </select>
+                        </td>
+                        <td><input type="text" placeholder="備註"></td>
+                    </tr>
+                    <tr>
+                        <td>4. 配電箱及線路連接</td>
+                        <td>
+                            <select>
+                                <option>正常</option>
+                                <option>線路鬆脫</option>
+                                <option>異常</option>
+                            </select>
+                        </td>
+                        <td><input type="text" placeholder="備註"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-section">
+            <div class="form-section-title">三、 巡檢總結及處理建議</div>
+            <div class="form-group">
+                <textarea placeholder="請在此輸入總結評估或後續跟進建議..."></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
